@@ -1,0 +1,64 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const project = {
+  title: "E-commerce Dashboard",
+  description: "A real-time dashboard for monitoring sales and inventory",
+  tech: ["React", "Node.js", "PostgreSQL"],
+  fullDescription: `
+    A comprehensive e-commerce dashboard that provides real-time monitoring of sales, 
+    inventory levels, and customer analytics. Built with a modern tech stack to ensure 
+    high performance and scalability.
+  `,
+  features: [
+    "Real-time sales tracking",
+    "Inventory management system",
+    "Customer analytics dashboard",
+    "Automated reporting",
+    "Multi-user access control"
+  ],
+  images: [
+    {
+      url: "https://placehold.co/600x400",
+      alt: "Dashboard main view"
+    }
+  ]
+};
+---
+
+<Layout title={`${project.title} | My Portfolio`}>
+  <div class="space-y-8">
+    <header class="space-y-4">
+      <h1 class="text-3xl font-bold">{project.title}</h1>
+      <div class="flex gap-2">
+        {project.tech.map(tech => (
+          <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">{tech}</span>
+        ))}
+      </div>
+    </header>
+
+    <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+      <img 
+        src={project.images[0].url} 
+        alt={project.images[0].alt}
+        class="w-full h-auto"
+      />
+    </div>
+
+    <div class="space-y-6">
+      <section class="space-y-4">
+        <h2 class="text-2xl font-semibold">Overview</h2>
+        <p class="text-gray-600 leading-relaxed">{project.fullDescription}</p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl font-semibold">Key Features</h2>
+        <ul class="list-disc list-inside space-y-2 text-gray-600">
+          {project.features.map(feature => (
+            <li>{feature}</li>
+          ))}
+        </ul>
+      </section>
+    </div>
+  </div>
+</Layout>
