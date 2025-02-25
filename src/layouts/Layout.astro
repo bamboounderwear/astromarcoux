@@ -9,29 +9,109 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="custom-scrollbar">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <style is:global>
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+
+      @layer utilities {
+        .custom-scrollbar {
+          scrollbar-width: thin;
+          scrollbar-color: #E5E7EB transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background-color: #E5E7EB;
+          border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background-color: #D1D5DB;
+        }
+      }
+
+      /* Prevent layout shift when scrollbar is hidden */
+      html {
+        scrollbar-gutter: stable;
+      }
+    </style>
   </head>
-  <body class="bg-gray-50 min-h-screen flex flex-col">
-    <nav class="bg-white shadow-sm">
+  <body class="bg-white min-h-screen flex flex-col custom-scrollbar">
+    <nav class="border-b border-gray-200">
       <div class="w-[95%] max-w-7xl mx-auto px-4 py-3">
-        <div class="flex justify-between">
+        <div class="flex justify-between items-center">
           <a href="/" class="text-xl font-semibold">Portfolio</a>
-          <div class="space-x-4">
-            <a href="/projects" class="hover:text-gray-600">Projects</a>
-            <a href="/blog" class="hover:text-gray-600">Blog</a>
-          </div>
+          <button
+            id="menuButton"
+            class="text-lg hover:text-gray-600 transition-colors"
+            aria-label="Toggle menu"
+          >
+            menu+
+          </button>
         </div>
       </div>
     </nav>
+
+    <div
+      id="menuOverlay"
+      class="fixed inset-0 bg-white z-50 opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out overflow-y-auto custom-scrollbar"
+    >
+      <div class="w-[95%] max-w-7xl mx-auto px-4 py-3">
+        <div class="flex justify-between items-center">
+          <a href="/" class="text-xl font-semibold">Portfolio</a>
+          <button
+            id="closeButton"
+            class="text-lg hover:text-gray-600 transition-colors"
+            aria-label="Close menu"
+          >
+            close
+          </button>
+        </div>
+        <div class="flex flex-col items-center justify-center min-h-[80vh] gap-8">
+          <a href="/" class="text-4xl hover:text-gray-600 transition-colors">Home</a>
+          <a href="/projects" class="text-4xl hover:text-gray-600 transition-colors">Projects</a>
+          <a href="/blog" class="text-4xl hover:text-gray-600 transition-colors">Blog</a>
+        </div>
+      </div>
+    </div>
+
     <main class="w-[95%] max-w-7xl mx-auto px-4 py-8 flex-grow">
       <slot />
     </main>
     <Footer />
+
+    <script>
+      const menuButton = document.getElementById('menuButton');
+      const closeButton = document.getElementById('closeButton');
+      const menuOverlay = document.getElementById('menuOverlay');
+
+      menuButton?.addEventListener('click', () => {
+        menuOverlay?.classList.add('opacity-100', 'pointer-events-auto');
+        document.documentElement.classList.add('overflow-hidden');
+      });
+
+      closeButton?.addEventListener('click', () => {
+        menuOverlay?.classList.remove('opacity-100', 'pointer-events-auto');
+        document.documentElement.classList.remove('overflow-hidden');
+      });
+    </script>
   </body>
 </html>

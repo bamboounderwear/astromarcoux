@@ -10,7 +10,7 @@ const projects = await getCollection('projects');
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     {projects.map(project => (
       <a href={`/projects/${project.slug}`} class="group">
-        <article class="relative h-80 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 group-hover:transform group-hover:scale-[1.02]">
+        <article class="relative h-80 border border-gray-200 overflow-hidden transition-transform duration-300 group-hover:transform group-hover:scale-[1.02]">
           <img 
             src={project.data.image} 
             alt={project.data.imageAlt}
@@ -26,12 +26,12 @@ const projects = await getCollection('projects');
             <p class="text-gray-300 text-sm mb-3 line-clamp-2">{project.data.description}</p>
             <div class="flex flex-wrap gap-2">
               {project.data.tech.slice(0, 3).map(tech => (
-                <span class="bg-white/20 backdrop-blur-sm px-2 py-1 rounded-full text-xs text-white">
+                <span class="bg-white/20 backdrop-blur-sm px-2 py-1 text-xs text-white">
                   {tech}
                 </span>
               ))}
               {project.data.tech.length > 3 && (
-                <span class="bg-white/20 backdrop-blur-sm px-2 py-1 rounded-full text-xs text-white">
+                <span class="bg-white/20 backdrop-blur-sm px-2 py-1 text-xs text-white">
                   +{project.data.tech.length - 3} more
                 </span>
               )}
