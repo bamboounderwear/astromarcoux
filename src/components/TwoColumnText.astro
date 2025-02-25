@@ -1,0 +1,29 @@
+---
+interface Column {
+  title: string;
+  content: string;
+}
+
+interface Props {
+  leftColumn: Column;
+  rightColumn: Column;
+  className?: string;
+}
+
+const { leftColumn, rightColumn, className = '' } = Astro.props;
+---
+
+<div class:list={["grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12", className]}>
+  <div class="space-y-4">
+    <h3 class="text-xl font-semibold">{leftColumn.title}</h3>
+    <div class="prose prose-gray max-w-none">
+      <p>{leftColumn.content}</p>
+    </div>
+  </div>
+  <div class="space-y-4">
+    <h3 class="text-xl font-semibold">{rightColumn.title}</h3>
+    <div class="prose prose-gray max-w-none">
+      <p>{rightColumn.content}</p>
+    </div>
+  </div>
+</div>

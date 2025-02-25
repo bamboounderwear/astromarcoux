@@ -1,0 +1,43 @@
+---
+interface Image {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+interface Props {
+  images: Image[];
+  className?: string;
+}
+
+const { images, className = '' } = Astro.props;
+
+// Ensure we only process pairs of images
+const imagePairs = [];
+for (let i = 0; i < images.length; i += 2) {
+  imagePairs.push(images.slice(i, i + 2));
+}
+---
+
+<div class:list={["space-y-8", className]}>
+  {imagePairs.map((pair) => (
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+      {pair.map((image) => (
+        <figure class="space-y-2">
+          <div class="overflow-hidden border border-gray-200">
+            <img
+              src={image.src}
+              alt={image.alt}
+              class="w-full h-auto"
+            />
+          </div>
+          {image.caption && (
+            <figcaption class="text-sm text-gray-600 text-center">
+              {image.caption}
+            </figcaption>
+          )}
+        </figure>
+      ))}
+    </div>
+  ))}
+</div>

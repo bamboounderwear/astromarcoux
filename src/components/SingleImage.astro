@@ -1,0 +1,25 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  className?: string;
+}
+
+const { src, alt, caption, className = '' } = Astro.props;
+---
+
+<figure class:list={["space-y-4", className]}>
+  <div class="overflow-hidden border border-gray-200">
+    <img
+      src={src}
+      alt={alt}
+      class="w-full h-auto"
+    />
+  </div>
+  {caption && (
+    <figcaption class="text-sm text-gray-600 text-center">
+      {caption}
+    </figcaption>
+  )}
+</figure>

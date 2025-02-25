@@ -1,5 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ImageGallery from '../../components/ImageGallery.astro';
+import TwoColumnText from '../../components/TwoColumnText.astro';
+import TextWithImage from '../../components/TextWithImage.astro';
+import ThreeColumnText from '../../components/ThreeColumnText.astro';
+import SingleImage from '../../components/SingleImage.astro';
 
 const project = {
   title: "E-commerce Dashboard",
@@ -22,6 +27,75 @@ const project = {
       url: "https://placehold.co/600x400",
       alt: "Dashboard main view"
     }
+  ],
+  galleryImages: [
+    {
+      src: "https://placehold.co/800x600/22c55e/ffffff?text=Dashboard",
+      alt: "Main dashboard interface",
+      caption: "Real-time sales and inventory monitoring"
+    },
+    {
+      src: "https://placehold.co/800x600/3b82f6/ffffff?text=Analytics",
+      alt: "Analytics dashboard",
+      caption: "Comprehensive analytics and reporting"
+    },
+    {
+      src: "https://placehold.co/800x600/8b5cf6/ffffff?text=Inventory",
+      alt: "Inventory management",
+      caption: "Advanced inventory tracking system"
+    },
+    {
+      src: "https://placehold.co/800x600/ec4899/ffffff?text=Reports",
+      alt: "Automated reports",
+      caption: "Customizable reporting dashboard"
+    }
+  ],
+  detailedInfo: {
+    technical: {
+      title: "Technical Architecture",
+      content: "Built with a modern tech stack including React for the frontend, Node.js for the backend API, and PostgreSQL for data storage. The application uses WebSocket connections for real-time updates and implements a microservices architecture for better scalability and maintenance. The frontend utilizes React Query for efficient data fetching and state management."
+    },
+    business: {
+      title: "Business Impact",
+      content: "This dashboard has significantly improved operational efficiency for e-commerce businesses by providing real-time insights into sales performance, inventory levels, and customer behavior. Companies using this solution have reported a 40% reduction in inventory management time and a 25% increase in sales through better decision-making enabled by the analytics features."
+    }
+  },
+  highlights: [
+    {
+      title: "Real-time Analytics",
+      content: "Our advanced analytics engine processes millions of data points in real-time, providing instant insights into sales trends, customer behavior, and inventory movements. This enables businesses to make data-driven decisions quickly and effectively.",
+      image: {
+        src: "https://placehold.co/800x600/3b82f6/ffffff?text=Real-time+Analytics",
+        alt: "Real-time analytics dashboard showing live data"
+      }
+    },
+    {
+      title: "Inventory Management",
+      content: "The intelligent inventory management system uses predictive analytics to optimize stock levels, automatically generate purchase orders, and prevent stockouts. This system has helped businesses reduce carrying costs while maintaining optimal inventory levels.",
+      image: {
+        src: "https://placehold.co/800x600/8b5cf6/ffffff?text=Inventory+Management",
+        alt: "Inventory management interface"
+      }
+    }
+  ],
+  fullWidthImage: {
+    src: "https://placehold.co/1920x800/6366f1/ffffff?text=Dashboard+Overview",
+    alt: "Full dashboard overview showing multiple features",
+    caption: "Comprehensive view of the dashboard's main features and real-time monitoring capabilities"
+  },
+  benefits: [
+    {
+      title: "Increased Efficiency",
+      content: "Automation of routine tasks and real-time monitoring capabilities have led to a significant reduction in manual work and faster response times to market changes."
+    },
+    {
+      title: "Better Decision Making",
+      content: "Advanced analytics and comprehensive reporting tools provide actionable insights, enabling data-driven decisions that improve business outcomes."
+    },
+    {
+      title: "Scalable Solution",
+      content: "Built on a modern, microservices architecture, the platform easily scales to handle growing business needs and increasing data volumes."
+    }
   ]
 };
 ---
@@ -37,7 +111,7 @@ const project = {
       </div>
     </header>
 
-    <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+    <div class="bg-white overflow-hidden shadow-sm">
       <img 
         src={project.images[0].url} 
         alt={project.images[0].alt}
@@ -45,7 +119,7 @@ const project = {
       />
     </div>
 
-    <div class="space-y-6">
+    <div class="space-y-12">
       <section class="space-y-4">
         <h2 class="text-2xl font-semibold">Overview</h2>
         <p class="text-gray-600 leading-relaxed">{project.fullDescription}</p>
@@ -58,6 +132,47 @@ const project = {
             <li>{feature}</li>
           ))}
         </ul>
+      </section>
+
+      <section class="space-y-6">
+        <h2 class="text-2xl font-semibold">Project Details</h2>
+        <TwoColumnText
+          leftColumn={project.detailedInfo.technical}
+          rightColumn={project.detailedInfo.business}
+        />
+      </section>
+
+      <section class="space-y-8">
+        <h2 class="text-2xl font-semibold">Key Highlights</h2>
+        <div class="space-y-16">
+          {project.highlights.map((highlight, index) => (
+            <TextWithImage
+              title={highlight.title}
+              content={highlight.content}
+              image={highlight.image}
+              imageOnRight={index % 2 === 0}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl font-semibold">Interface Screenshots</h2>
+        <ImageGallery images={project.galleryImages} />
+      </section>
+
+      <section class="space-y-6">
+        <h2 class="text-2xl font-semibold">Dashboard Overview</h2>
+        <SingleImage
+          src={project.fullWidthImage.src}
+          alt={project.fullWidthImage.alt}
+          caption={project.fullWidthImage.caption}
+        />
+      </section>
+
+      <section class="space-y-6">
+        <h2 class="text-2xl font-semibold">Key Benefits</h2>
+        <ThreeColumnText columns={project.benefits} />
       </section>
     </div>
   </div>
