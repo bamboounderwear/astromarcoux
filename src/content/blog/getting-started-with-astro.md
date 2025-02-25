@@ -2,6 +2,8 @@
 title: "Getting Started with Astro"
 date: "2024-02-20"
 description: "Learn how to build fast websites with Astro"
+image: "https://placehold.co/600x400/22c55e/ffffff?text=Astro+Guide"
+imageAlt: "Astro framework guide illustration"
 ---
 
 Astro is a modern static site builder that offers an excellent developer experience

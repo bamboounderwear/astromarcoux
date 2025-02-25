@@ -2,6 +2,8 @@
 title: "Modern React Development in 2024"
 date: "2024-02-15"
 description: "Explore the latest practices and tools in the React ecosystem"
+image: "https://placehold.co/600x400/2563eb/ffffff?text=React+Development"
+imageAlt: "Modern React Development illustration"
 ---
 
 React continues to evolve and improve with each passing year. In this post, we'll dive into the modern React development practices that are shaping the way we build applications in 2024.

@@ -2,6 +2,8 @@
 title: "Web Performance Optimization Techniques"
 date: "2024-02-05"
 description: "Essential strategies for building fast and efficient web applications"
+image: "https://placehold.co/600x400/ef4444/ffffff?text=Web+Performance"
+imageAlt: "Web performance optimization illustration"
 ---
 
 Performance is a crucial aspect of modern web development. In this post, we'll explore various techniques to optimize your web applications.

@@ -2,6 +2,8 @@
 title: "TypeScript Best Practices for 2024"
 date: "2024-02-10"
 description: "Learn essential TypeScript patterns and practices for better code quality"
+image: "https://placehold.co/600x400/8b5cf6/ffffff?text=TypeScript"
+imageAlt: "TypeScript best practices illustration"
 ---
 
 TypeScript has become the standard for building scalable JavaScript applications. Let's explore the best practices that will help you write better TypeScript code.
